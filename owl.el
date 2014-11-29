@@ -91,6 +91,9 @@
 (defun docs-get-function-arguments (fn)
   (mapconcat 'symbol-name (help-function-arglist fn) " "))
 
+(defun docs-execution-directory ()
+  (file-name-directory load-file-name))
+
 (defun docs-generate (packages prefix-library)
   (interactive)
   (mapc (lambda (l) (require l)) packages)
@@ -99,7 +102,7 @@
          (variables (sort (docs-variable-list prefix-library t) 'string<))
          (functions (append functions variables))
          (html (with-temp-buffer
-                 (insert-file-contents "docs/tmpl/layout.html")
+                 (insert-file-contents (format "%s/tmpl/layout.html" (docs-execution-directory)))
                  (buffer-string)))
          (content (with-temp-buffer
                     (mapc (lambda (fn)
@@ -144,7 +147,7 @@
                                             ))) functions)
                     (buffer-string)))
          (html (replace-regexp-in-string "### CONTENT ###" content html t)))
-    (with-temp-file "docs/index.html"
+    (with-temp-file (format "%s/index.html" (docs-execution-directory))
       (insert html))
     (message "Documentation generated for Alchemist")))
 
