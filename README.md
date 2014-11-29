@@ -13,12 +13,20 @@ $ git clone https://github.com/tonini/owl.el.git doc
 
 ## Setup
 
-Edit setup variables in `owl-setup.el`
+Change the `owl-setup.el.example` file to `owl-setup.el` and add your specific
+documentation setup.
+
+Example:
 
 ```el
 (setq owl-documentation-packages '(your-package))
 (setq owl-documentation-prefix 'your-package-)
 ```
+
+`owl-documentation-packages` holds the packages of the project who should be loaded.
+
+`owl-documentation-prefix` is the prefix which is be used to fetch `functions`
+and `variables` from the project codebase.
 
 ## Libary dependencies
 

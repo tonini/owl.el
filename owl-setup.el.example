@@ -1,0 +1,2 @@
+(setq owl-documentation-packages '(your-package))
+(setq owl-documentation-prefix 'your-package-)
