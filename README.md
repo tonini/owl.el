@@ -22,13 +22,24 @@ Edit setup variables in `owl-setup.el`
 
 ## Libary dependencies
 
-If you have libary dependencies in your project, you need to use
+If you have libary dependencies which doesn't come with emacs in your project, you need to use
 [Cask](https://github.com/cask/cask) to generate the documention. That's because
 you will run emacs in mode and via `cask exec` the dependencies will be loaded
 via cask.
 
+## Usage
+
+With `cask` and third-party dependencies:
+
 ```
 $ cd into/emacs/project
 $ cask exec emacs -batch -Q -l doc/owl.el
+$ open doc/index.html
+```
+
+Without `cask` and third-party dependencies.
+```
+$ cd into/emacs/project
+$ emacs -batch -Q -l doc/owl.el
 $ open doc/index.html
 ```
