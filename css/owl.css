@@ -17,8 +17,7 @@ ul {
 
 #content {
   margin: 0 auto;
-  padding: 80px 0;
-  width: 800px;
+  width: 650px;
 }
 
 .detail_header {
@@ -41,8 +40,6 @@ ul {
 }
 
 .arguments {
-  /* color: #4183c4; */
-  /* color: rgb(28, 184, 65); */
   font-weight: bold;
   color: #558abb;
 }
@@ -72,7 +69,6 @@ ul {
 
 .search-box {
   margin:0 auto;
-  width:500px;
   padding: 8px 15px;
   border:1px solid #d0d0d0;
   background-color:#fcfcfc;
@@ -99,7 +95,6 @@ input[type=text]{
 }
 
 .lighter {
-  width:100%;
   height:50px;
   padding:40px 25px;
 }
