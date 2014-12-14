@@ -1,7 +1,32 @@
 ;;; owl.el --- Owl produces HTML and online documentation for Emacs projects
 
-;;; Commentary:
+;; Copyright © 2014 Samuel Tonini
 ;;
+;; Author: Samuel Tonini <tonini.samuel@gmail.com>
+
+;; URL: http://www.github.com/tonini/owl.el
+;; Version: 0.1.0
+;; Package-Requires: ((emacs "24"))
+;; Keywords:
+
+;; This file is not part of GNU Emacs.
+
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;;  Owl produces HTML and online documentation for Emacs projects
 
 ;;; Code:
 
@@ -15,10 +40,10 @@
 (defvar owl-documentation-prefix nil
   "")
 
-(defun docs-add-code-blocks (docstring)
+(defun owl--add-code-blocks (docstring)
   docstring)
 
-(defun docs-get-function-definition (fn)
+(defun owl--get-function-definition (fn)
   (let ((function-definiton (save-excursion (find-function fn)
                                             (let* ((start-pos (point))
                                                    (end-pos (progn
@@ -34,9 +59,9 @@
 </pre>
 </div>" (if function-definiton function-definiton ""))))
 
-(defun docs-get-documention (fn)
+(defun owl--get-documentation (fn)
   (let* ((docstring (if (documentation fn) (documentation fn) ""))
-         (docstring (docs-add-code-blocks docstring))
+         (docstring (owl--add-code-blocks docstring))
          (docstring-list (when (not (equal docstring "")) (split-string docstring "\n"))))
     (if docstring-list
         (with-temp-buffer
@@ -45,9 +70,9 @@
       ""
       )))
 
-(defun docs-get-variable-documention (variable)
+(defun owl--get-variable-documentation (variable)
   (let* ((docstring (if (get variable 'variable-documentation) (get variable 'variable-documentation) ""))
-         (docstring (docs-add-code-blocks docstring))
+         (docstring (owl--add-code-blocks docstring))
          (docstring-list (when (not (equal docstring "")) (split-string docstring "\n"))))
     (if docstring-list
         (with-temp-buffer
@@ -56,7 +81,7 @@
       ""
       )))
 
-(defun docs-function-list (prefix no-private)
+(defun owl--get-function-list (prefix no-private)
   "Return list of functions matching PREFIX."
   (let ((prefix-sym (symbol-name prefix))
         (res '()))
@@ -72,7 +97,7 @@
      obarray)
     res))
 
-(defun docs-variable-list (prefix no-private)
+(defun owl--get-variable-list (prefix no-private)
   "Return list of variables matching PREFIX."
   (let ((prefix-sym (symbol-name prefix))
         (res '()))
@@ -88,21 +113,21 @@
      obarray)
     res))
 
-(defun docs-get-function-arguments (fn)
+(defun owl--get-function-arguments (fn)
   (mapconcat 'symbol-name (help-function-arglist fn) " "))
 
-(defun docs-execution-directory ()
+(defun owl--execution-dir ()
   (file-name-directory load-file-name))
 
-(defun docs-generate (packages prefix-library)
+(defun owl--generate (packages prefix-library)
   (interactive)
   (mapc (lambda (l) (require l)) packages)
   (message "Generate documentation for Alchemist...")
-  (let* ((functions (sort (docs-function-list prefix-library t) 'string<))
-         (variables (sort (docs-variable-list prefix-library t) 'string<))
+  (let* ((functions (sort (owl--get-function-list prefix-library t) 'string<))
+         (variables (sort (owl--get-variable-list prefix-library t) 'string<))
          (functions (append functions variables))
          (html (with-temp-buffer
-                 (insert-file-contents (format "%s/tmpl/layout.html" (docs-execution-directory)))
+                 (insert-file-contents (format "%s/tmpl/layout.html" (owl--execution-directory)))
                  (buffer-string)))
          (content (with-temp-buffer
                     (mapc (lambda (fn)
@@ -136,30 +161,30 @@
                                               "Variable")
                                             fn
                                             (if (fboundp fn)
-                                                (docs-get-function-arguments fn)
+                                                (owl--get-function-arguments fn)
                                               "")
                                             (if (fboundp fn)
-                                                (docs-get-documention fn)
-                                              (docs-get-variable-documention fn))
+                                                (owl--get-documentation fn)
+                                              (owl--get-variable-documentation fn))
                                             (if (fboundp fn)
-                                                (docs-get-function-definition fn)
+                                                (owl--get-function-definition fn)
                                               "")
                                             ))) functions)
                     (buffer-string)))
          (html (replace-regexp-in-string "### CONTENT ###" content html t)))
-    (with-temp-file (format "%s/index.html" (docs-execution-directory))
+    (with-temp-file (format "%s/index.html" (owl--execution-directory))
       (insert html))
     (message "Documentation generated for Alchemist")))
 
 (message load-file-name)
 
-(defun owl-load-documentation-config ()
+(defun owl--load-documentation-config ()
   (let* ((current-directory (file-name-directory load-file-name))
          (filename (expand-file-name (format "%s/%s" current-directory "owl-setup.el"))))
     (load-file filename)))
 
-(owl-load-documentation-config)
-(docs-generate owl-documentation-packages owl-documentation-prefix)
+(owl--load-documentation-config)
+(owl--generate owl-documentation-packages owl-documentation-prefix)
 
 (provide 'owl)
 
