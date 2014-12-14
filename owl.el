@@ -35,13 +35,11 @@
   (add-to-list 'load-path current-directory))
 
 (defvar owl-documentation-packages '()
-  "")
+  "The package which the API docs should be generated for.")
 
 (defvar owl-documentation-prefix nil
-  "")
-
-(defun owl--add-code-blocks (docstring)
-  docstring)
+  "The functions and variables prefix which should be used
+to build the API docs from.")
 
 (defun owl--get-function-definition (fn)
   (let ((function-definiton (save-excursion (find-function fn)
@@ -61,7 +59,6 @@
 
 (defun owl--get-documentation (fn)
   (let* ((docstring (if (documentation fn) (documentation fn) ""))
-         (docstring (owl--add-code-blocks docstring))
          (docstring-list (when (not (equal docstring "")) (split-string docstring "\n"))))
     (if docstring-list
         (with-temp-buffer
