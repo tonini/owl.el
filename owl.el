@@ -127,7 +127,7 @@
          (variables (sort (owl--get-variable-list prefix-library t) 'string<))
          (functions (append functions variables))
          (html (with-temp-buffer
-                 (insert-file-contents (format "%s/tmpl/layout.html" (owl--execution-directory)))
+                 (insert-file-contents (format "%s/tmpl/layout.html" (owl--execution-dir)))
                  (buffer-string)))
          (content (with-temp-buffer
                     (mapc (lambda (fn)
@@ -172,7 +172,7 @@
                                             ))) functions)
                     (buffer-string)))
          (html (replace-regexp-in-string "### CONTENT ###" content html t)))
-    (with-temp-file (format "%s/index.html" (owl--execution-directory))
+    (with-temp-file (format "%s/index.html" (owl--execution-dir))
       (insert html))
     (message "Documentation generated for Alchemist")))
 
