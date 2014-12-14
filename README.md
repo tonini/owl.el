@@ -10,6 +10,8 @@
 
 OWL is in `alpha` stage, feedback and reporting issues are appreciated.
 
+Working example how it look & feel you can find [here](https://dl.dropboxusercontent.com/u/192032/elisp-docs/docs/index.html).
+
 ## Installation
 
 ```
