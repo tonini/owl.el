@@ -4,6 +4,12 @@
 
 OWL is in `alpha` stage, feedback and reporting issues are appreciated.
 
+***
+
+![Produces HTML and online documentation for Emacs projects](http://i.imgur.com/xMKdvbB.png)
+
+***
+
 ## Installation
 
 ```
