@@ -36,7 +36,7 @@ Example:
 `owl-documentation-prefix` is the prefix which is be used to fetch `functions`
 and `variables` from the project codebase.
 
-## Libary dependencies
+## Library dependencies
 
 If you have libary dependencies which doesn't come with emacs in your project, you need to use
 [Cask](https://github.com/cask/cask) to generate the documention. That's because
