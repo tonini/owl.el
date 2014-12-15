@@ -118,9 +118,10 @@ to build the API docs from.")
 (defun owl--build-header ()
   (format "
 <div id=\"header\">
+  <span class=\"version\">%s</span>
   <h1>%s</h1>
 </div>
-" owl-documentation-title))
+" (concat "v" owl-documentation-version) owl-documentation-title))
 
 (defun owl--generate (packages prefix-library)
   (interactive)

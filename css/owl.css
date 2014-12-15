@@ -16,8 +16,36 @@ ul {
 }
 
 #content {
-  margin: 0 auto;
+  margin: 0 auto 60px auto;
   width: 650px;
+}
+
+#header {
+  width: 650px;
+  text-align: center;
+}
+
+#header .version {
+  float: left;
+  display: block;
+  font-weight: bold;
+  color: rgba(0,0,0,0.45);
+  background-color: #f0f0f0;
+  padding: 5px 8px 5px 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+#header h1 {
+  clear: both;
+  font-family: times, Times New Roman, times-roman, georgia, serif;
+  font-size: 58px;
+  line-height: 80px;
+  letter-spacing: -1px;
+  color: #444;
+  margin: 0 0 0 0;
+  padding: 25px 0 0 0;
+  font-weight: 100;
 }
 
 .detail_header {
