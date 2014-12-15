@@ -69,7 +69,6 @@ to build the API docs from.")
 
 (defun owl--get-variable-documentation (variable)
   (let* ((docstring (if (get variable 'variable-documentation) (get variable 'variable-documentation) ""))
-         (docstring (owl--add-code-blocks docstring))
          (docstring-list (when (not (equal docstring "")) (split-string docstring "\n"))))
     (if docstring-list
         (with-temp-buffer
@@ -115,6 +114,13 @@ to build the API docs from.")
 
 (defun owl--execution-dir ()
   (file-name-directory load-file-name))
+
+(defun owl--build-header ()
+  (format "
+<div id=\"header\">
+  <h1>%s</h1>
+</div>
+" owl-documentation-title))
 
 (defun owl--generate (packages prefix-library)
   (interactive)
@@ -168,7 +174,8 @@ to build the API docs from.")
                                               "")
                                             ))) functions)
                     (buffer-string)))
-         (html (replace-regexp-in-string "### CONTENT ###" content html t)))
+         (html (replace-regexp-in-string "### CONTENT ###" content html t))
+         (html (replace-regexp-in-string "### HEADER ###" (owl--build-header) html t)))
     (with-temp-file (format "%s/index.html" (owl--execution-dir))
       (insert html))
     (message "Documentation generated for Alchemist")))
