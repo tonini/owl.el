@@ -10,7 +10,7 @@
 
 OWL is in `alpha` stage, feedback and reporting issues are appreciated.
 
-Working example can be found [here](https://dl.dropboxusercontent.com/u/192032/elisp-docs/docs/index.html).
+Working example can be found [here](https://github.com/tonini/owl-example).
 
 ## Installation
 
