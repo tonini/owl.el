@@ -29,12 +29,22 @@ Example:
 ```el
 (setq owl-documentation-packages '(your-package))
 (setq owl-documentation-prefix 'your-package-)
+(setq owl-documentation-title "your-api-doc-title")
+(setq owl-documentation-version "your-package-version")
+(setq owl-documentation-source-link "your-package-link-to-source")
 ```
 
 `owl-documentation-packages` holds the packages of the project who should be loaded.
 
 `owl-documentation-prefix` is the prefix which is be used to fetch `functions`
 and `variables` from the project codebase.
+
+`owl-documentation-title` is the title which will be displayed in the top header of the
+generated API documentation.
+
+`owl-documentation-version` the version of the generated API documentation.
+
+`owl-documentation-source-link` URL to the source of the package.
 
 ## Library dependencies
 
