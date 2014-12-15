@@ -119,9 +119,14 @@ to build the API docs from.")
   (format "
 <div id=\"header\">
   <span class=\"version\">%s</span>
+  <span class=\"source-link\"><a href=\"%s\">Source</a></span>
   <h1>%s</h1>
 </div>
-" (concat "v" owl-documentation-version) owl-documentation-title))
+"
+          (concat "v" owl-documentation-version)
+          owl-documentation-source-link
+          owl-documentation-title
+          ))
 
 (defun owl--generate (packages prefix-library)
   (interactive)

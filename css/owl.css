@@ -36,6 +36,25 @@ ul {
   border-bottom-right-radius: 8px;
 }
 
+#header .source-link {
+  float: right;
+  display: block;
+  font-weight: bold;
+  color: rgba(0,0,0,0.45);
+  background-color: #f0f0f0;
+  padding: 5px 8px 5px 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+#header .source-link a {
+  color: rgba(0,0,0,0.45);
+}
+#header .source-link a:hover {
+  color: rgba(0,0,0,0.60);
+}
+
+
 #header h1 {
   clear: both;
   font-family: times, Times New Roman, times-roman, georgia, serif;

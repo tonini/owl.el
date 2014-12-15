@@ -1,2 +1,5 @@
 (setq owl-documentation-packages '(your-package))
 (setq owl-documentation-prefix 'your-package-)
+(setq owl-documentation-title "your-api-doc-title")
+(setq owl-documentation-version "your-package-version")
+(setq owl-documentation-source-link "your-package-link-to-source")
