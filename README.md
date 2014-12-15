@@ -10,7 +10,7 @@
 
 OWL is in `alpha` stage, feedback and reporting issues are appreciated.
 
-Working example can be found [here](https://github.com/tonini/owl-example).
+Working example can be found [here](http://www.samueltonini.com/owl-example/).
 
 ## Installation
 
