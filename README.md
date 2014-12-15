@@ -4,7 +4,7 @@
 
 ***
 
-![Produces HTML and online documentation for Emacs projects](http://i.imgur.com/QumUjDY.png)
+![Produces HTML and online documentation for Emacs projects](http://i.imgur.com/L05x4Er.png)
 
 ***
 
